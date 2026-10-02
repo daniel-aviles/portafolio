@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Daniel Ruiz, motion graphics: logos animados, anuncios para redes, infografías e intros para YouTube.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daniel Ruiz, motion graphics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --suelo:#D9D4CC; --tinta:#17171A; --suave:#57534E; --rosa:#B0144F; --marco:#C9C3BA; --linea:rgba(23,23,26,.18);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --suelo:#1D1C1A; --tinta:#EDE8E0; --suave:#ADA69C; --rosa:#F2598F; --marco:#2A2926; --linea:rgba(237,232,224,.16); }
+}
+:root[data-theme="dark"] { --suelo:#1D1C1A; --tinta:#EDE8E0; --suave:#ADA69C; --rosa:#F2598F; --marco:#2A2926; --linea:rgba(237,232,224,.16); }
+html { scroll-padding-top:env(safe-area-inset-top,0px); }
+*,*::before,*::after { box-sizing:inherit; }
+body { margin:0; background:var(--suelo); color:var(--tinta);
+  font-family:"Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif; font-variation-settings:"opsz" 14;
+  font-size:1.0625rem; line-height:1.55; -webkit-font-smoothing:antialiased; }
+a { color:var(--rosa); text-underline-offset:.2em; }
+a:hover { color:var(--tinta); }
+:focus-visible { outline:3px solid var(--rosa); outline-offset:3px; }
+.envoltura { max-width:1240px; margin:0 auto; padding:0 clamp(20px,4vw,48px); }
+
+header.barra { display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; padding:28px 0 0; }
+.firma { font-weight:700; font-size:1.15rem; letter-spacing:-.01em; }
+.firma span { font-weight:400; color:var(--suave); }
+
+.hero { display:grid; grid-template-columns: minmax(0,1.35fr) minmax(0,.65fr); gap:clamp(28px,5vw,72px); align-items:end; padding:clamp(48px,9vw,120px) 0 clamp(56px,8vw,104px); }
+.hero h1 { margin:0; font-weight:800; font-size:clamp(3.2rem,10.5vw,8.6rem); line-height:.88; letter-spacing:-.045em;
+  font-variation-settings:"opsz" 96, "wdth" 78; }
+.hero h1 em { font-style:normal; color:var(--rosa); }
+.hero .bajada { max-width:34ch; margin:28px 0 0; font-size:clamp(1.1rem,1.6vw,1.3rem); color:var(--suave); }
+.hero .pieza { margin:0; }
+.hero .pieza .ficha { margin-top:14px; }
+
+section.trabajo { border-top:1px solid var(--linea); padding:clamp(40px,6vw,72px) 0; }
+h2 { margin:0 0 clamp(28px,4vw,44px); font-weight:700; font-size:clamp(1.9rem,4vw,3rem); line-height:1; letter-spacing:-.03em; font-variation-settings:"opsz" 72, "wdth" 85; }
+.rejilla { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(36px,5vw,64px) clamp(24px,3vw,40px); }
+.rejilla .ancha { grid-column:1 / -1; }
+.rejilla .ancha { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,.7fr); gap:clamp(20px,3vw,40px); align-items:end; }
+
+.marco { position:relative; background:var(--marco); border-radius:6px; overflow:hidden; }
+.marco video { display:block; width:100%; height:100%; object-fit:cover; }
+.toggle { position:absolute; right:12px; bottom:12px; width:44px; height:44px; border-radius:50%; border:0; cursor:pointer;
+  background:rgba(12,12,14,.62); display:grid; place-items:center; opacity:0; transition:opacity .2s; }
+.marco:hover .toggle, .toggle:focus-visible, .pausado .toggle { opacity:1; }
+.sonido { position:absolute; left:12px; bottom:12px; width:44px; height:44px; border-radius:50%; border:0; cursor:pointer; background:rgba(12,12,14,.62); display:grid; place-items:center; }
+.sonido .ondas { display:none; } .sonido[aria-pressed="true"] .ondas { display:inline; } .sonido[aria-pressed="true"] .mute { display:none; }
+.sonido[aria-pressed="true"] { background:var(--rosa); }
+.ico { width:14px; height:16px; border-left:5px solid #fff; border-right:5px solid #fff; }
+.pausado .sonido { position:absolute; left:12px; bottom:12px; width:44px; height:44px; border-radius:50%; border:0; cursor:pointer; background:rgba(12,12,14,.62); display:grid; place-items:center; }
+.sonido .ondas { display:none; } .sonido[aria-pressed="true"] .ondas { display:inline; } .sonido[aria-pressed="true"] .mute { display:none; }
+.sonido[aria-pressed="true"] { background:var(--rosa); }
+.ico { border-right:0; border-left:14px solid #fff; border-top:8px solid transparent; border-bottom:8px solid transparent; width:0; height:0; margin-left:4px; }
+.ficha { margin-top:16px; }
+.ficha h3 { margin:0; font-size:1.35rem; font-weight:700; letter-spacing:-.015em; line-height:1.2; }
+.ficha .meta { margin:4px 0 8px; color:var(--rosa); font-size:.95rem; }
+.ficha p { margin:0; max-width:58ch; color:var(--suave); }
+
+.servicios { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 clamp(24px,4vw,56px); }
+.servicio { padding:22px 0; border-top:1px solid var(--linea); }
+.servicio h3 { margin:0 0 6px; font-size:1.3rem; letter-spacing:-.015em; }
+.servicio p { margin:0; color:var(--suave); max-width:48ch; }
+
+.contacto { border-top:1px solid var(--linea); padding:clamp(56px,9vw,112px) 0; }
+.contacto p.grande { margin:0; font-weight:800; font-size:clamp(2.2rem,6vw,4.6rem); line-height:.95; letter-spacing:-.04em; font-variation-settings:"opsz" 96, "wdth" 80; max-width:16ch; }
+.acciones { display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
+.boton { display:inline-flex; align-items:center; min-height:52px; padding:0 26px; border-radius:999px; background:var(--tinta); color:var(--suelo); text-decoration:none; font-weight:600; }
+.boton:hover { background:var(--rosa); color:#fff; }
+.boton.sec { background:transparent; color:var(--tinta); box-shadow:inset 0 0 0 1.5px var(--tinta); }
+.boton.sec:hover { background:var(--tinta); color:var(--suelo); }
+[data-lang="es"] [lang="en"], [data-lang="en"] [lang="es"] { display:none; }
+.nav { display:flex; align-items:center; gap:18px; }
+.idioma { display:inline-flex; border-radius:999px; box-shadow:inset 0 0 0 1.5px var(--tinta); overflow:hidden; }
+.idioma button { font:inherit; font-size:.85rem; font-weight:600; border:0; background:transparent; color:var(--tinta); padding:8px 14px; min-height:40px; cursor:pointer; }
+[data-lang="es"] .idioma [data-set="es"], [data-lang="en"] .idioma [data-set="en"] { background:var(--tinta); color:var(--suelo); }
+.rejilla .vertical { grid-template-columns:minmax(0,.55fr) minmax(0,1fr); }
+.rejilla .vertical .marco { max-width:380px; }
+.rejilla .destacada { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.rejilla .destacada .marco { max-width:560px; }
+.rejilla .destacada h3 { font-size:clamp(1.6rem,2.6vw,2.2rem); }
+footer { padding:0 0 40px; color:var(--suave); font-size:.9rem; }
+
+@media (max-width: 820px) {
+  .hero, .rejilla, .rejilla .ancha, .rejilla .vertical, .servicios { grid-template-columns:minmax(0,1fr); }
+  .hero .pieza { max-width:360px; }
+}
+@media (prefers-reduced-motion: reduce) { .toggle { opacity:1; } }
+</style>
+</head>
+<body>
+<div class="envoltura">
+  <header class="barra">
+    <div class="firma">Daniel Ruiz <span>motion graphics</span></div>
+    <div class="nav"><a href="#contacto"><span lang="es">Cotizar un proyecto</span><span lang="en">Get a quote</span></a><div class="idioma" role="group" aria-label="Idioma / Language"><button type="button" data-set="es">ES</button><button type="button" data-set="en">EN</button></div></div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1><span lang="es">Tu marca,<br>en <em>movimiento</em>.</span><span lang="en">Your brand,<br>in <em>motion</em>.</span></h1>
+      <p class="bajada"><span lang="es">Logos animados, anuncios para redes, infografías e intros para negocios que quieren verse profesionales sin contratar un estudio completo.</span><span lang="en">Animated logos, social media ads, infographics and intros for businesses that want to look professional without hiring a full studio. In English, Spanish or both.</span></p>
+    </div>
+    
+<article class="pieza " lang="es">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/martes-de-pastor-poster.jpg" aria-label="Martes de pastor">
+      <source src="media/martes-de-pastor.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Martes de pastor"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Martes de pastor"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Martes de pastor</h3>
+    <p class="meta"><span lang="es">Anuncio para redes, vertical 9:16, 8 s</span><span lang="en">Social media ad, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">Promoción para reels, TikTok y estados de WhatsApp con la marca de La Lumbre. La misma plantilla sirve para cada promo del mes.</span><span lang="en">Two-for-one Tuesday promo for Reels, TikTok and WhatsApp. The same template works for every promotion of the month.</span></p>
+  </div>
+</article>
+<article class="pieza " lang="en">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/techo-firme-roofing-poster.jpg" aria-label="Techo Firme Roofing">
+      <source src="media/techo-firme-roofing.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Techo Firme Roofing"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Techo Firme Roofing"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Techo Firme Roofing</h3>
+    <p class="meta"><span lang="es">Anuncio bilingüe, vertical 9:16, 13 s</span><span lang="en">Bilingual ad, vertical 9:16, 13 s</span></p>
+    <p><span lang="es">Anuncio para un techador latino de Los Ángeles: la tormenta, la gotera, el techo nuevo teja por teja y la llamada a la acción en inglés y español.</span><span lang="en">An ad for a Latino-owned roofer in Los Angeles: the storm, the leak, the new roof going on shingle by shingle, and a call to action in English and Spanish.</span></p>
+  </div>
+</article>
+  </section>
+
+  <section class="trabajo" aria-labelledby="t-trabajo">
+    <h2 id="t-trabajo"><span lang="es">Trabajo reciente</span><span lang="en">Recent work</span></h2>
+    <div class="rejilla">
+      
+<article class="pieza ancha vertical destacada">
+  <div class="marco" style="aspect-ratio:4/5">
+    <video muted loop playsinline preload="metadata" poster="media/panaderia-la-alborada-poster.jpg" aria-label="Panadería La Alborada">
+      <source src="media/panaderia-la-alborada.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Panadería La Alborada"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Panadería La Alborada"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Panadería La Alborada</h3>
+    <p class="meta"><span lang="es">Animación dibujada a mano, feed 4:5, 13 s</span><span lang="en">Hand-drawn animation, feed 4:5, 13 s</span></p>
+    <p><span lang="es">Stop motion de 12 dibujos por segundo: la fachada se traza línea por línea, el color se imprime sobre papel, la concha humea y la marca se rotula a mano.</span><span lang="en">Stop motion at 12 drawings per second: the storefront is drawn line by line, color is printed onto paper, the concha steams and the brand is hand-lettered.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ">
+  <div class="marco" style="aspect-ratio:16/9">
+    <video muted loop playsinline preload="metadata" poster="media/la-lumbre-poster.jpg" aria-label="La Lumbre">
+      <source src="media/la-lumbre.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar La Lumbre"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de La Lumbre"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>La Lumbre</h3>
+    <p class="meta"><span lang="es">Logo animado, horizontal 16:9, 6 s</span><span lang="en">Animated logo, horizontal 16:9, 6 s</span></p>
+    <p><span lang="es">Logo trazado en vector para una taquería de pastor. La flama se enciende, el trompo sube, la piña cae y el nombre se rotula letra por letra.</span><span lang="en">Vector logo for a Mexican taco shop. The flame lights up, the al pastor spit rises, the pineapple drops and the name is hand-lettered in.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ">
+  <div class="marco" style="aspect-ratio:16/9">
+    <video muted loop playsinline preload="metadata" poster="media/umbral-bienes-raices-poster.jpg" aria-label="Umbral Bienes Raíces">
+      <source src="media/umbral-bienes-raices.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Umbral Bienes Raíces"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Umbral Bienes Raíces"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Umbral Bienes Raíces</h3>
+    <p class="meta"><span lang="es">Logo animado, horizontal 16:9, 7 s</span><span lang="en">Animated logo, horizontal 16:9, 7 s</span></p>
+    <p><span lang="es">Identidad sobria para una inmobiliaria. El edificio se dibuja como plano de arquitecto y la puerta en arco da nombre a la marca.</span><span lang="en">A refined identity for a real estate agency. The building is drawn like an architect's blueprint, and the arched door gives the brand its name.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ancha">
+  <div class="marco" style="aspect-ratio:16/9">
+    <video muted loop playsinline preload="metadata" poster="media/brisa-dental-poster.jpg" aria-label="Brisa Dental">
+      <source src="media/brisa-dental.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Brisa Dental"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Brisa Dental"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Brisa Dental</h3>
+    <p class="meta"><span lang="es">Infografía bilingüe, horizontal 16:9, 18 s</span><span lang="en">Bilingual infographic, horizontal 16:9, 18 s</span></p>
+    <p><span lang="es">Comparativa de precios en inglés y español para pacientes de Estados Unidos, con gráficas que crecen y un mapa de San Diego a Tijuana.</span><span lang="en">A price comparison in English and Spanish for US patients, with animated charts and a map from San Diego to Tijuana.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ancha vertical" lang="es">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/techo-firme-roofing-poster.jpg" aria-label="Techo Firme Roofing">
+      <source src="media/techo-firme-roofing.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Techo Firme Roofing"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Techo Firme Roofing"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Techo Firme Roofing</h3>
+    <p class="meta"><span lang="es">Anuncio bilingüe, vertical 9:16, 13 s</span><span lang="en">Bilingual ad, vertical 9:16, 13 s</span></p>
+    <p><span lang="es">Anuncio para un techador latino de Los Ángeles: la tormenta, la gotera, el techo nuevo teja por teja y la llamada a la acción en inglés y español.</span><span lang="en">An ad for a Latino-owned roofer in Los Angeles: the storm, the leak, the new roof going on shingle by shingle, and a call to action in English and Spanish.</span></p>
+  </div>
+</article>
+<article class="pieza ancha vertical" lang="en">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/martes-de-pastor-poster.jpg" aria-label="Martes de pastor">
+      <source src="media/martes-de-pastor.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Martes de pastor"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Martes de pastor"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Martes de pastor</h3>
+    <p class="meta"><span lang="es">Anuncio para redes, vertical 9:16, 8 s</span><span lang="en">Social media ad, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">Promoción para reels, TikTok y estados de WhatsApp con la marca de La Lumbre. La misma plantilla sirve para cada promo del mes.</span><span lang="en">Two-for-one Tuesday promo for Reels, TikTok and WhatsApp. The same template works for every promotion of the month.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ">
+  <div class="marco" style="aspect-ratio:16/9">
+    <video muted loop playsinline preload="metadata" poster="media/nebruma-intro-a-poster.jpg" aria-label="NEBRUMA, intro A">
+      <source src="media/nebruma-intro-a.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar NEBRUMA, intro A"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de NEBRUMA, intro A"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>NEBRUMA, intro A</h3>
+    <p class="meta"><span lang="es">Intro de canal, horizontal 16:9, 7 s</span><span lang="en">Channel intro, horizontal 16:9, 7 s</span></p>
+    <p><span lang="es">Intro para un canal de misterio en YouTube. Ciudad en línea blanca, ventanas que se encienden y una silueta que espera.</span><span lang="en">Intro for a mystery channel on YouTube. A city in white line art, windows lighting up and a silhouette waiting.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ">
+  <div class="marco" style="aspect-ratio:16/9">
+    <video muted loop playsinline preload="metadata" poster="media/nebruma-intro-c-poster.jpg" aria-label="NEBRUMA, intro C">
+      <source src="media/nebruma-intro-c.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar NEBRUMA, intro C"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de NEBRUMA, intro C"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>NEBRUMA, intro C</h3>
+    <p class="meta"><span lang="es">Intro de canal, horizontal 16:9, 7 s</span><span lang="en">Channel intro, horizontal 16:9, 7 s</span></p>
+    <p><span lang="es">Segunda versión de la intro: un reloj que corre al revés sobre el barrio dormido hasta revelar la marca.</span><span lang="en">A second version of the intro: a clock running backwards over a sleeping neighborhood until the brand is revealed.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ancha">
+  <div class="marco" style="aspect-ratio:16/9">
+    <video muted loop playsinline preload="metadata" poster="media/nebruma-episodio-3-poster.jpg" aria-label="NEBRUMA, episodio 3">
+      <source src="media/nebruma-episodio-3.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar NEBRUMA, episodio 3"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de NEBRUMA, episodio 3"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>NEBRUMA, episodio 3</h3>
+    <p class="meta"><span lang="es">Serie documental animada, horizontal 16:9, fragmento de 20 s</span><span lang="en">Animated documentary series, horizontal 16:9, 20 s excerpt</span></p>
+    <p><span lang="es">Fragmento de un episodio de 12 minutos animado de principio a fin: escenas ilustradas, documentos y líneas de tiempo.</span><span lang="en">An excerpt from a 12-minute episode animated from start to finish: illustrated scenes, documents and timelines.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ancha vertical">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nebruma-nueva-bruma-poster.jpg">
+      <source src="media/nebruma-nueva-bruma.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar NEBRUMA, Nueva Bruma"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de NEBRUMA, Nueva Bruma"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>NEBRUMA, Nueva Bruma</h3>
+    <p class="meta"><span lang="es">Reel nocturno, vertical 9:16, 21 s</span><span lang="en">Night reel, vertical 9:16, 21 s</span></p>
+    <p><span lang="es">Un recorrido por la ciudad de NEBRUMA a las 02:47 a. m.: rascacielos en línea blanca, el puente sobre el agua, la lluvia frente al hotel y el neón de un bar de jazz. El rojo es el único color.</span><span lang="en">A walk through the city of NEBRUMA at 2:47 a.m.: white-line skyscrapers, the bridge over the water, rain outside the hotel and the neon of a jazz bar. Red is the only color.</span></p>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="trabajo" aria-labelledby="t-serv">
+    <h2 id="t-serv"><span lang="es">Qué puedo hacer por tu negocio</span><span lang="en">What I can do for your business</span></h2>
+    <div class="servicios">
+      <div class="servicio"><h3><span lang="es">Logo y logo animado</span><span lang="en">Logo and animated logo</span></h3><p><span lang="es">Diseño tu logo en vector, limpio y editable, y lo animo para tus videos, redes y pantallas.</span><span lang="en">A clean, editable vector logo, animated for your videos, social media and screens.</span></p></div>
+      <div class="servicio"><h3><span lang="es">Anuncios para redes</span><span lang="en">Social media ads</span></h3><p><span lang="es">Promociones animadas en vertical para reels, TikTok, estados de WhatsApp y campañas pagadas.</span><span lang="en">Vertical animated promos for Reels, TikTok, Stories and paid campaigns.</span></p></div>
+      <div class="servicio"><h3><span lang="es">Infografías y explicativos</span><span lang="en">Infographics and explainers</span></h3><p><span lang="es">Precios, procesos y datos convertidos en animaciones claras, en español, inglés o ambos.</span><span lang="en">Prices, processes and data turned into clear animations, in English, Spanish or both.</span></p></div>
+      <div class="servicio"><h3><span lang="es">Intros y series para YouTube</span><span lang="en">YouTube intros and series</span></h3><p><span lang="es">Identidad animada para tu canal y episodios completos con un estilo propio.</span><span lang="en">Animated identity for your channel and full episodes with a style of their own.</span></p></div>
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto" aria-labelledby="t-contacto">
+    <p class="grande" id="t-contacto"><span lang="es">¿Le damos movimiento a tu marca?</span><span lang="en">Ready to put your brand in motion?</span></p>
+    <div class="acciones">
+      <a class="boton" lang="es" href="https://wa.me/526641797371?text=Hola%2C%20vi%20tu%20portafolio%20de%20motion%20graphics%20y%20me%20interesa%20cotizar" target="_blank" rel="noopener">WhatsApp: +52 664 179 7371</a><a class="boton" lang="en" href="https://wa.me/526641797371?text=Hi%2C%20I%20saw%20your%20motion%20graphics%20portfolio%20and%20I%27d%20like%20a%20quote" target="_blank" rel="noopener">WhatsApp: +52 664 179 7371</a>
+      <a class="boton sec" href="mailto:djtijuana664@gmail.com">djtijuana664@gmail.com</a>
+    </div>
+  </section>
+
+  <footer><span lang="es">Las marcas La Lumbre, Umbral, Brisa Dental, Techo Firme y La Alborada son ficticias y se crearon para mostrar el trabajo. NEBRUMA es un proyecto propio.</span><span lang="en">La Lumbre, Umbral, Brisa Dental, Techo Firme and La Alborada are fictional brands created to show the work. NEBRUMA is my own project.</span></footer>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  function setLang(l) {
+    root.setAttribute('data-lang', l); root.setAttribute('lang', l);
+    document.title = l === 'en' ? 'Daniel Ruiz, motion graphics' : 'Daniel Ruiz, motion graphics';
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  }
+  var q = (location.search.match(/lang=(es|en)/) || location.hash.match(/(es|en)$/) || [])[1];
+  var saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
+  var nav = (navigator.language || 'es').toLowerCase().indexOf('en') === 0 ? 'en' : 'es';
+  setLang(q || saved || nav);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-set]'), function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-set')); });
+  });
+})();
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var piezas = Array.prototype.slice.call(document.querySelectorAll('.pieza'));
+  piezas.forEach(function (el) {
+    var v = el.querySelector('video'), b = el.querySelector('.toggle'), marco = el.querySelector('.marco');
+    var manual = reduce;
+    function estado() {
+      var p = v.paused; marco.classList.toggle('pausado', p);
+      var t = el.querySelector('h3').textContent;
+      b.setAttribute('aria-label', (p ? 'Reproducir ' : 'Pausar ') + t);
+    }
+    v.addEventListener('play', estado); v.addEventListener('pause', estado);
+    var so = el.querySelector('.sonido');
+    so.addEventListener('click', function () {
+      var on = v.muted;
+      document.querySelectorAll('.pieza video').forEach(function (o) { o.muted = true; });
+      document.querySelectorAll('.sonido').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      if (on) { v.muted = false; v.currentTime = 0; manual = false; v.play().catch(function(){}); so.setAttribute('aria-pressed', 'true'); }
+    });
+    b.addEventListener('click', function () { manual = !v.paused; if (v.paused) { manual = false; v.play().catch(function(){}); } else v.pause(); });
+    estado();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (manual) return;
+          if (e.isIntersecting) v.play().catch(function(){}); else v.pause();
+        });
+      }, { threshold: 0.35 }).observe(el);
+    }
+  });
+})();
+</script>
+</body>
+</html>
