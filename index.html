@@ -82,6 +82,10 @@ h2 { margin:0 0 clamp(28px,4vw,44px); font-weight:700; font-size:clamp(1.9rem,4v
 [data-lang="es"] .idioma [data-set="es"], [data-lang="en"] .idioma [data-set="en"] { background:var(--tinta); color:var(--suelo); }
 .rejilla .vertical { grid-template-columns:minmax(0,.55fr) minmax(0,1fr); }
 .rejilla .vertical .marco { max-width:380px; }
+.rejilla .tira { grid-column:1 / -1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(20px,3vw,32px) clamp(14px,2vw,24px); margin-top:calc(-1 * clamp(12px,2vw,28px)); }
+.tira .ficha h3 { font-size:1rem; }
+.tira .ficha p:not(.meta) { font-size:.9rem; }
+@media (max-width: 760px) { .rejilla .tira { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 .rejilla .destacada { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
 .rejilla .destacada .marco { max-width:560px; }
 .rejilla .destacada h3 { font-size:clamp(1.6rem,2.6vw,2.2rem); }
@@ -172,6 +176,34 @@ footer { padding:0 0 40px; color:var(--suave); font-size:.9rem; }
 </article>
       
 <article class="pieza ">
+  <div class="marco" style="aspect-ratio:1/1">
+    <video muted loop playsinline preload="metadata" poster="media/ceviche-locochon-poster.jpg" aria-label="El Ceviche Locochón">
+      <source src="media/ceviche-locochon.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar El Ceviche Locochón"><span class="ico"></span></button>
+  </div>
+  <div class="ficha">
+    <h3>El Ceviche Locochón</h3>
+    <p class="meta"><span lang="es">Logo animado en bucle, cuadrado 1:1 y transparente</span><span lang="en">Looping animated logo, square 1:1 and transparent</span></p>
+    <p><span lang="es">Su logo, separado por capas y animado en un bucle que no se nota. Se entregó con fondo transparente para usarlo como marca de agua en sus videos desde el celular.</span><span lang="en">Their logo, split into layers and animated as a seamless loop. Delivered with a transparent background so they can use it as a watermark on their videos from their phone.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ">
+  <div class="marco" style="aspect-ratio:4/5">
+    <video muted loop playsinline preload="metadata" poster="media/london-metalfest-poster.jpg" aria-label="London Metalfest">
+      <source src="media/london-metalfest.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar London Metalfest"><span class="ico"></span></button>
+  </div>
+  <div class="ficha">
+    <h3>London Metalfest</h3>
+    <p class="meta"><span lang="es">Póster animado, feed 4:5, 10 s</span><span lang="en">Animated poster, feed 4:5, 10 s</span></p>
+    <p><span lang="es">El póster oficial del festival, animado a partir de la imagen final sin capas: el logo entra en foco, el fuego se mueve y el cartel de bandas aparece en orden, del headliner hacia abajo.</span><span lang="en">The festival's official poster, animated from the flat final artwork: the logo pulls into focus, the fire moves and the lineup comes in order, from the headliner down.</span></p>
+  </div>
+</article>
+      
+<article class="pieza ">
   <div class="marco" style="aspect-ratio:16/9">
     <video muted loop playsinline preload="metadata" poster="media/umbral-bienes-raices-poster.jpg" aria-label="Umbral Bienes Raíces">
       <source src="media/umbral-bienes-raices.mp4" type="video/mp4">
@@ -229,6 +261,129 @@ footer { padding:0 0 40px; color:var(--suave); font-size:.9rem; }
     <p><span lang="es">Promoción para reels, TikTok y estados de WhatsApp con la marca de La Lumbre. La misma plantilla sirve para cada promo del mes.</span><span lang="en">Two-for-one Tuesday promo for Reels, TikTok and WhatsApp. The same template works for every promotion of the month.</span></p>
   </div>
 </article>
+      
+<article class="pieza ancha vertical">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nocturne-reel-wallpaper-archive-poster.jpg" aria-label="Nocturne Shadows · Wallpaper Archive">
+      <source src="media/nocturne-reel-wallpaper-archive.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Nocturne Shadows · Wallpaper Archive"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Nocturne Shadows · Wallpaper Archive"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Nocturne Shadows · Wallpaper Archive</h3>
+    <p class="meta"><span lang="es">Reel de lanzamiento, vertical 9:16, 22 s, con diseño sonoro</span><span lang="en">Launch reel, vertical 9:16, 22 s, with sound design</span></p>
+    <p><span lang="es">Reel para lanzar la colección de wallpapers de Nocturne Shadows, mi marca de arte oscuro. Las piezas aparecen en la pantalla de un teléfono, se abren en abanico por volumen y el video cierra con el precio de lanzamiento.</span><span lang="en">Launch reel for the Nocturne Shadows wallpaper collection, my own dark art brand. The pieces show up on a phone lock screen, fan out by volume, and the video closes on the launch price.</span></p>
+  </div>
+</article>
+      
+<div class="tira">
+<article class="pieza mini">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nocturne-historia-01-poster.jpg" aria-label="Nocturne Shadows · Historia: el anuncio">
+      <source src="media/nocturne-historia-01.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Nocturne Shadows · Historia: el anuncio"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Nocturne Shadows · Historia: el anuncio"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>El anuncio</h3>
+    <p class="meta"><span lang="es">Historia de Instagram, vertical 9:16, 8 s</span><span lang="en">Instagram story, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">Un teléfono cambia de wallpaper solo mientras se presenta la colección.</span><span lang="en">A phone cycles through wallpapers on its own while the collection is introduced.</span></p>
+  </div>
+</article>
+      
+<article class="pieza mini">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nocturne-historia-02-poster.jpg" aria-label="Nocturne Shadows · Historia: Vol. 01 Limbo">
+      <source src="media/nocturne-historia-02.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Nocturne Shadows · Historia: Vol. 01 Limbo"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Nocturne Shadows · Historia: Vol. 01 Limbo"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Vol. 01 Limbo</h3>
+    <p class="meta"><span lang="es">Historia de Instagram, vertical 9:16, 8 s</span><span lang="en">Instagram story, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">Las 8 piezas del volumen se despliegan en abanico, cada una con su propio movimiento.</span><span lang="en">The volume's 8 pieces fan out, each with its own motion.</span></p>
+  </div>
+</article>
+      
+<article class="pieza mini">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nocturne-historia-03-poster.jpg" aria-label="Nocturne Shadows · Historia: Vol. 02 Thresholds">
+      <source src="media/nocturne-historia-03.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Nocturne Shadows · Historia: Vol. 02 Thresholds"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Nocturne Shadows · Historia: Vol. 02 Thresholds"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Vol. 02 Thresholds</h3>
+    <p class="meta"><span lang="es">Historia de Instagram, vertical 9:16, 8 s</span><span lang="en">Instagram story, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">Mismo sistema visual para otro volumen: la serie se reconoce de inmediato.</span><span lang="en">The same visual system for another volume, so the series reads at a glance.</span></p>
+  </div>
+</article>
+      
+<article class="pieza mini">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nocturne-historia-04-poster.jpg" aria-label="Nocturne Shadows · Historia: Vol. 03 Horizon">
+      <source src="media/nocturne-historia-04.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Nocturne Shadows · Historia: Vol. 03 Horizon"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Nocturne Shadows · Historia: Vol. 03 Horizon"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Vol. 03 Horizon</h3>
+    <p class="meta"><span lang="es">Historia de Instagram, vertical 9:16, 8 s</span><span lang="en">Instagram story, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">Abanico de piezas con luz cálida y siluetas, pensado para el sticker de link.</span><span lang="en">A fan of warm-lit silhouette pieces, laid out to leave room for the link sticker.</span></p>
+  </div>
+</article>
+      
+<article class="pieza mini">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nocturne-historia-05-poster.jpg" aria-label="Nocturne Shadows · Historia: Vol. 04 After Midnight">
+      <source src="media/nocturne-historia-05.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Nocturne Shadows · Historia: Vol. 04 After Midnight"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Nocturne Shadows · Historia: Vol. 04 After Midnight"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Vol. 04 After Midnight</h3>
+    <p class="meta"><span lang="es">Historia de Instagram, vertical 9:16, 8 s</span><span lang="en">Instagram story, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">El volumen más nocturno, con luces de ciudad que parpadean dentro de cada pieza.</span><span lang="en">The darkest volume, with city lights flickering inside each piece.</span></p>
+  </div>
+</article>
+      
+<article class="pieza mini">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nocturne-historia-06-poster.jpg" aria-label="Nocturne Shadows · Historia: la colección completa">
+      <source src="media/nocturne-historia-06.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Nocturne Shadows · Historia: la colección completa"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Nocturne Shadows · Historia: la colección completa"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>La colección completa</h3>
+    <p class="meta"><span lang="es">Historia de Instagram, vertical 9:16, 8 s</span><span lang="en">Instagram story, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">Las 32 piezas en mosaico y el precio del paquete completo.</span><span lang="en">All 32 pieces in a mosaic, with the bundle price.</span></p>
+  </div>
+</article>
+      
+<article class="pieza mini">
+  <div class="marco" style="aspect-ratio:9/16">
+    <video muted loop playsinline preload="metadata" poster="media/nocturne-historia-07-poster.jpg" aria-label="Nocturne Shadows · Historia: escalera de precio">
+      <source src="media/nocturne-historia-07.mp4" type="video/mp4">
+    </video>
+    <button class="toggle" type="button" aria-label="Pausar Nocturne Shadows · Historia: escalera de precio"><span class="ico"></span></button>
+    <button class="sonido" type="button" aria-pressed="false" aria-label="Activar sonido de Nocturne Shadows · Historia: escalera de precio"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/><path class="ondas" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><path class="mute" d="M16 9l6 6M22 9l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="ficha">
+    <h3>Escalera de precio</h3>
+    <p class="meta"><span lang="es">Historia de Instagram, vertical 9:16, 8 s</span><span lang="en">Instagram story, vertical 9:16, 8 s</span></p>
+    <p><span lang="es">El precio sube por escalones conforme se venden copias, para crear urgencia real.</span><span lang="en">The price steps up as copies sell, to create real urgency.</span></p>
+  </div>
+</article>
+      
+</div>
       
 <article class="pieza ">
   <div class="marco" style="aspect-ratio:16/9">
@@ -341,7 +496,7 @@ footer { padding:0 0 40px; color:var(--suave); font-size:.9rem; }
     }
     v.addEventListener('play', estado); v.addEventListener('pause', estado);
     var so = el.querySelector('.sonido');
-    so.addEventListener('click', function () {
+    if (so) so.addEventListener('click', function () {
       var on = v.muted;
       document.querySelectorAll('.pieza video').forEach(function (o) { o.muted = true; });
       document.querySelectorAll('.sonido').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
